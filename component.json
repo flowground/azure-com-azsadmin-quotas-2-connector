@@ -1,0 +1,118 @@
+{
+    "title": "StorageManagementClient",
+    "description": "The Admin Storage Management Client.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/azsadmin-quotas/2015-12-01-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://adminmanagement.local.azurestack.external/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Authorization uses an Azure Active Directory OAuth2 flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "StorageQuotas_List": {
+            "main": "./lib/actions/StorageQuotas_List.js",
+            "title": "Returns a list of storage quotas at the given location.",
+            "description": "Returns a list of storage quotas at the given location.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StorageQuotas_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StorageQuotas_Delete": {
+            "main": "./lib/actions/StorageQuotas_Delete.js",
+            "title": "Delete an existing quota",
+            "description": "Delete an existing quota",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StorageQuotas_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StorageQuotas_Get": {
+            "main": "./lib/actions/StorageQuotas_Get.js",
+            "title": "Returns the specified storage quota.",
+            "description": "Returns the specified storage quota.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StorageQuotas_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StorageQuotas_CreateOrUpdate": {
+            "main": "./lib/actions/StorageQuotas_CreateOrUpdate.js",
+            "title": "Create or update an existing storage quota.",
+            "description": "Create or update an existing storage quota.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StorageQuotas_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
